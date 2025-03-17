@@ -9,7 +9,7 @@ import TaskManagament from './Components/TaskManagament'
 export default function App() {
   return (
     <div>
-      <TaskManagament/>
+      <LocalCrud/>
     </div>
   )
 }

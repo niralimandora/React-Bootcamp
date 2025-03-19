@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function Filter() {
     const [cat,setCat]=useState("all");
@@ -125,12 +126,17 @@ export default function Filter() {
             }
           }
     ]
-
+    const value = data.filter((item)=>item.category == cat);
     const handleFilter = ()=>{
         const filteredData = data.filter((item)=>
             cat == 'all' ? data : item.category == cat
             )
             setRecord(filteredData)
+    }
+    const navigate = useNavigate();
+
+    const handleclick = ()=>{
+      navigate('/Sorting')
     }
   return (
     <div>
@@ -149,6 +155,15 @@ export default function Filter() {
                 </ul>
             })
         }
+        <div>
+          <h5>Sorting</h5>
+          <button onClick={()=>navigate('/Sorting')}>Go to sort</button>
+        </div>
+        <Link to={`/Sorting/${value}`}>Sorting</Link>
+        {/* <div>
+          <h5>Sorting</h5>
+          <button onClick={handleclick}>Go to Sort</button>
+        </div> */}
     </div>
   )
 }

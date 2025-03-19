@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import { useNavigate, useParams } from 'react-router-dom';
+
 
 export default function Sorting() {
      const [term,setTerm]=useState("asc");
@@ -245,6 +247,15 @@ export default function Sorting() {
             }
           }
     ]
+const obj = {name : "Rahul", subject : "react"}
+    const value = useParams()
+    console.log(value);
+    
+    const navigate = useNavigate();
+
+    const handleclick = ()=>{
+      navigate('/Searching')
+    }
 
     const sortedData = data.sort((a,b)=>
      term == 'asc' ? a.price - b.price : b.price-a.price
@@ -263,6 +274,12 @@ export default function Sorting() {
                 </ul>
             })
         }
+        <div>
+          {/* this make navigate to searching page and pass the object as state */}
+          {/* replace true is when i go back from searching page it will not show the sorting page */}
+          <h5>Serching</h5>
+          <button onClick={()=>navigate('/Searching',{replace:true,state:obj})}>Go to Search</button>
+        </div>
     </div>
   )
 }

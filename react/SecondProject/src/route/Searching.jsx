@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useLocation } from 'react-router-dom';
 
 export default function Searching() {
     const [term,setTerm]=useState("");
@@ -247,8 +248,14 @@ export default function Searching() {
     const serchedData = data.filter((item)=>
         item.title.toLowerCase().includes(term.toLowerCase())
     )   
+    // this is location hook
+    const daata = useLocation();
+    console.log(daata);
+    
   return (
     <div>
+{/* //navigate from sort find name */}
+        <h5>{daata.state.name}</h5>
         <h1>Searching</h1>
         <input type="text" placeholder='Search here' onChange={(e)=>setTerm(e.target.value)} />
         {
@@ -261,6 +268,8 @@ export default function Searching() {
                 </ul>
             })
         }
+
+
     </div>
   )
 }
